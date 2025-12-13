@@ -111,7 +111,7 @@ export default function index({ tasks }: TasksIndexProps) {
                                                 <TableCell className={task.status == 'completed' ? 'line-through' : ''}>{task.title}</TableCell>
                                                 <TableCell>
                                                     {task.description ? (
-                                                        <span className="line-clamp-1">{task.description}</span>
+                                                        <span className="line-clamp-1 truncate max-w-75">{task.description}</span>
                                                     ) : (
                                                         <span className="text-muted">Sin descripcion</span>
                                                     )}

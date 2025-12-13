@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\TaskStatus;
 use App\Http\Requests\Task\TaskRequest;
 use App\Models\Task;
 use Illuminate\Http\Request;
@@ -19,7 +20,7 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $tasks = Auth::user()->tasks()->latest()->paginate(2);
+        $tasks = Auth::user()->tasks()->latest()->paginate(10);
         return Inertia::render('tasks/index', [
             'tasks' => $tasks
         ]);
@@ -90,7 +91,8 @@ class TaskController extends Controller
     public function toggleComplete(Task $task)
     {
         $this->authorize('update', $task);
-        $task->status = $task->status == "completed" ? 'pending' : 'completed';
+        //$task->status = $task->status == "completed" ? 'pending' : 'completed';
+        $task->status = $task->status == TaskStatus::Completed->value ? TaskStatus::Pending->value : TaskStatus::Completed->value;
         $task->save();
         return back()->with('success', 'Estado actualizado');
     }

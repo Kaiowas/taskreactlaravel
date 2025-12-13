@@ -14,8 +14,8 @@ interface TaskFormProps {
 
 export default function TaskForm({ task, mode }: TaskFormProps) {
     const { data, setData, post, put, processing, errors, reset } = useForm({
-        title: task?.title || '',
-        description: task?.description || '',
+        title: task?.title || 'Default Title',
+        description: task?.description || 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris facilisis semper orci, eu commodo leo consectetur at. Integer bibendum, erat at facilisis vehicula, ante nibh malesuada enim, eu efficitur orci lorem accumsan dui. Quisque vel tempor tortor. Donec vitae nisi sem. Praesent dolor sem, viverra quis sem ac, feugiat dapibus metus.',
         due_date: task?.due_date ? new Date(task.due_date.split('/').reverse().join('-')).toISOString().slice(0, 16) : '',
         is_completed: task?.status || 'pending',
     });
@@ -33,7 +33,7 @@ export default function TaskForm({ task, mode }: TaskFormProps) {
             });
         } else if (task) {
             put(route('tasks.update', task?.id), {
-                onSuccess: () => {},
+                onSuccess: () => { },
             });
         }
     };
