@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
+use App\Enums\TaskStatus;
 
 class DashboardController extends Controller
 {
@@ -17,9 +18,9 @@ class DashboardController extends Controller
         $user = Auth::user();
         $tasksStats = [
             'total' => $user->tasks()->count(),
-            'completed' => $user->tasks()->where('status', 'completed')->count(),
-            'pending' => $user->tasks()->where('status', '!=', 'completed')->count(),
-            'upcoming' => $user->tasks()->where('status', '!=', 'completed')
+            'completed' => $user->tasks()->where('status', TaskStatus::Completed->value)->count(),
+            'pending' => $user->tasks()->where('status', '!=', TaskStatus::Completed->value)->count(),
+            'upcoming' => $user->tasks()->where('status', '!=', TaskStatus::Completed->value)
                 ->whereNotNull('due_date')
                 ->where('due_date', '>', now())
                 ->orderBy('due_date')

@@ -89,7 +89,7 @@ export default function Dashboard({ tasksStats, completionRate }: DashboardProps
                                             <h3 className="text-sm font-semibold">{task.title}</h3>
                                             <p className="text-muted-foreground text-xs">{task.due_date}</p>
                                         </div>
-                                        <span className="text-muted-foreground text-sm">{task.status}</span>
+                                        <span className="text-muted-foreground text-sm capitalize">{task.status}</span>
                                         <Button asChild>
                                             <Link href={route('tasks.show', task.id)}>Ver</Link>
                                         </Button>

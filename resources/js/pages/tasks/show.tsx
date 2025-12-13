@@ -55,7 +55,7 @@ export default function CreateTask({ task }: ShowTaskProps) {
                             <h1 className="text-2xl font-bold tracking-tight">{task.title}</h1>
                             <p className="text-muted-foreground text-sm">{task.description}</p>
                             <p className="text-muted-foreground text-sm">Fecha de vencimiento: {task.due_date}</p>
-                            <p className="text-muted-foreground text-sm">Estado: {task.status ? 'Completada' : 'Pendiente'}</p>
+                            <p className="text-muted-foreground text-sm">Estado: {task.status == 'completed' ? 'Completada' : 'Pendiente'}</p>
                         </div>
                         <div className="flex flex-row gap-2">
                             <Badge

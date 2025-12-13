@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\TaskStatus;
 use Illuminate\Database\Eloquent\Model;
 
 class Task extends Model
@@ -15,7 +16,9 @@ class Task extends Model
         'due_date',
     ];
     protected $casts = [
-        'due_date' => 'datetime',
+        'title' => 'string',
+        'status' => TaskStatus::class,
+        'due_date' => 'datetime:d/m/Y',
     ];
     public function user()
     {
