@@ -16,7 +16,7 @@ export default function TaskForm({ task, mode }: TaskFormProps) {
     const { data, setData, post, put, processing, errors, reset } = useForm({
         title: task?.title || '',
         description: task?.description || '',
-        due_date: task?.due_date ? new Date(task.due_date).toISOString().slice(0, 16) : '',
+        due_date: task?.due_date ? new Date(task.due_date.split('/').reverse().join('-')).toISOString().slice(0, 16) : '',
         is_completed: task?.status || 'pending',
     });
     const pageTitle = mode === 'create' ? 'Crear Tarea' : 'Editar Tarea';
