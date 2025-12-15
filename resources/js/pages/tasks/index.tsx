@@ -90,16 +90,17 @@ export default function index({ tasks }: TasksIndexProps) {
                             <CardContent>
                                 <Table>
                                     <TableHeader>
-                                        <TableRow>
+                                        <TableRow >
                                             <TableHead className="w-12"></TableHead>
                                             <TableHead>Título</TableHead>
                                             <TableHead>Descripción</TableHead>
-                                            <TableHead>Fecha Límite</TableHead>
+                                            <TableHead className='text-center'>Status</TableHead>
+                                            <TableHead className='text-center'>Fecha Límite</TableHead>
                                             <TableHead className="text-right">Acciones</TableHead>
                                         </TableRow>
                                     </TableHeader>
                                     <TableBody>
-                                        {tasks.data.map((task) => (
+                                        {tasks.data.map((task: any) => (
                                             <TableRow key={task.id} className={task.status == 'completed' ? 'opacity-60' : ''}>
                                                 <TableCell>
                                                     <Checkbox
@@ -116,7 +117,8 @@ export default function index({ tasks }: TasksIndexProps) {
                                                         <span className="text-muted">Sin descripcion</span>
                                                     )}
                                                 </TableCell>
-                                                <TableCell>{task.due_date}</TableCell>
+                                                <TableCell className='text-center'>{task.status}</TableCell>
+                                                <TableCell className='text-center'>{task.due_date}</TableCell>
                                                 <TableCell className="text-right">
                                                     <div className="flex justify-end gap-2">
                                                         <Button variant="outline" asChild>
